@@ -1,2 +1,2 @@
-# ItemGenerator
-Unity3d item generator
+# PotionGenerator
+Unity3d potion generator
