@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 namespace ItemInfo
 {
     public enum PotionQuality {
+        COMMON,
+        RARE,
+        LEGENDARY
     }
 
     public enum PotionBuff {
+        HEALTH,
+        MANA,
+        STAMINA
     }
 
 

@@ -9,4 +9,6 @@ public class ItemData : ScriptableObject {
     public string Description { get; set; }
     public GameObject Prefab { get; set; }
     public Material Material { get; set; }
+
+    
 }
