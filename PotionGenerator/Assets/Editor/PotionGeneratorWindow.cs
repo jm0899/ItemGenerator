@@ -31,14 +31,52 @@ public class PotionGeneratorWindow : EditorWindow{
     private void InitData() {
 
         PotionInfo = (PotionData)CreateInstance(typeof(PotionData));
-        //Get random potion data
         PotionInfo.Randomize();
     }
 
     private void DrawSettings() {
         //Display in editor
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("ItemID");
+        GUILayout.Label(PotionInfo.ItemID);
+        EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Name");
+        GUILayout.Label(PotionInfo.Name);
+        EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Type");
+        GUILayout.Label(PotionInfo.potionBuff.ToString());
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Quality");
+        GUILayout.Label(PotionInfo.potionQuality.ToString());
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Description");
+        GUILayout.Label(PotionInfo.Description);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Prefab");
+        EditorGUILayout.ObjectField(PotionInfo.Prefab, typeof(GameObject), false);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Material");
+        EditorGUILayout.ObjectField(PotionInfo.Material, typeof(Material), false);
+        EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("New random potion", GUILayout.Height(40)))
+        {
+            //Get random potion data
+            PotionInfo.Randomize();
+        }
+        
         if (GUILayout.Button("Edit", GUILayout.Height(40)))
         {
             //Open an edit window

@@ -13,6 +13,7 @@ public class PotionData : ItemData {
     public void Randomize()
     {
         int bonus;
+        Array values;
         System.Random random = new System.Random();
         //randomize all info
         switch (potionQuality)
@@ -30,10 +31,19 @@ public class PotionData : ItemData {
                 healAmount = bonus;
                 break;
         }
-        ItemID = string.Format("ID{0}POT{1}",potionBuff, random.Next(0,100));
-        Name = string.Format("{0} potion of {1} restoration.",potionQuality.ToString(), potionBuff.ToString());
-        Description = string.Format("Heals your {0} for {1}", potionBuff, healAmount);
         
+        //Generate random item stats
+        values = Enum.GetValues(typeof(PotionQuality));
+        var randomQuality = (PotionQuality)values.GetValue(random.Next(values.Length));
+        potionQuality = randomQuality;
+
+        values = Enum.GetValues(typeof(PotionBuff));
+        var randomBuff = (PotionBuff)values.GetValue(random.Next(values.Length));
+        potionBuff = randomBuff;
+
+        ItemID = string.Format("ID{0}POT{1}", potionBuff, random.Next(0, 100));
+        Name = string.Format("{0} potion of {1} restoration.", potionQuality.ToString().ToLower(), potionBuff.ToString().ToLower());
+        Description = string.Format("Heals your {0} for {1} points.", potionBuff.ToString().ToLower(), healAmount);
         Prefab = RandomizePrefab();
         Material = RandomizeMaterial(Prefab);
     }
@@ -44,7 +54,7 @@ public class PotionData : ItemData {
         List<Material> matsList = new List<Material>();
 
         //Material Directory
-        string path = "";
+        string path = "ItemData\\Materials\\Potion";
 
         //Load All Materials
         UnityEngine.Object[] MatDirectory = Resources.LoadAll(path,typeof(Material));
@@ -55,11 +65,14 @@ public class PotionData : ItemData {
             Material matAsset = mat;
             matsList.Add(matAsset);
         }
-        //Get material of prefab
-        Material newMat = potion.GetComponent<Renderer>().material;
 
-        //Change to random
-        newMat = matsList[UnityEngine.Random.Range(0, matsList.Count)];
+        //Get a random material from list
+        Material newMat = matsList[UnityEngine.Random.Range(0, matsList.Count)];
+        Renderer rend = potion.GetComponent<Renderer>();
+      
+        //set material
+        rend.material = newMat;
+     
         return newMat;
 
     }
@@ -72,10 +85,11 @@ public class PotionData : ItemData {
     {
         //Create a new Game Object
         //Load Assets
+        
         //Instantiate new game object from a random asset
-        GameObject p = new GameObject();
+       
         UnityEngine.Object[] potions = LoadAssets();
-        p = (GameObject)potions[UnityEngine.Random.Range(0, potions.Length)];
+        GameObject p = (GameObject)potions[UnityEngine.Random.Range(0, potions.Length)];
         GameObject pot = Instantiate(p);
         return pot;
      
@@ -84,25 +98,25 @@ public class PotionData : ItemData {
     private UnityEngine.Object[] LoadAssets()
     {
         string path = "Assign a Path";
-        UnityEngine.Object[] assets = Resources.LoadAll(path, typeof(GameObject));
+        
         switch (potionBuff)
         {
             case PotionBuff.HEALTH:
-                path = "\\Potions\\HEALTH";
+                path = "Potions\\HEALTH";
+                
                 break;
             case PotionBuff.MANA:
-                path = "\\Potions\\MANA";
+                path = "Potions\\MANA";
                 break;
             case PotionBuff.STAMINA:
-                path = "\\Potions\\STAMINA";
+                path = "Potions\\STAMINA";
                 break;
 
         }
+        
+        UnityEngine.Object[] assets = LoadFromDB(path);
 
-        if (path == "Assign a path")
-        {
-            //error path not assigned todo..
-        }
+        
         return assets;
     }
 }
