@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionGenerator", "Assembly-CSharp.csproj", "{5FE53B84-CE7E-7404-FD51-B130487F635F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PotionGenerator", "Assembly-CSharp-Editor.csproj", "{817C9499-0028-BE5F-4C2F-BBA382F3C601}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FE53B84-CE7E-7404-FD51-B130487F635F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE53B84-CE7E-7404-FD51-B130487F635F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE53B84-CE7E-7404-FD51-B130487F635F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE53B84-CE7E-7404-FD51-B130487F635F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817C9499-0028-BE5F-4C2F-BBA382F3C601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817C9499-0028-BE5F-4C2F-BBA382F3C601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817C9499-0028-BE5F-4C2F-BBA382F3C601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817C9499-0028-BE5F-4C2F-BBA382F3C601}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
